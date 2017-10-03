@@ -1,3 +1,43 @@
+//get a seed
+var seed = 87798286123456;//getRandomInt(1, 200000);
+
+//create a new generator, passing a seed value.
+gen = new MersenneTwister(seed);
+	
+for(i = 0; i < 10; i++) {
+
+	//use .next() to get the next random value.
+	rand = gen.next();
+	
+	//this is "pseudo-random" so, every time we seed
+	//the generator with 1234, the first random value 
+	//will be 272848313
+	console.log(rand); //272848313
+}
+
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getUserPhrase() {
+	var userphrase = document.getElementById("user-input-phrase").value;
+	console.log(userphrase);
+	
+	var phrasekey = "";
+	
+	var res = userphrase.split("");
+	console.log(res);
+	
+	res.forEach(function(element) {
+		
+		phrasekey += String(element.charCodeAt(0));
+	});
+	
+	console.log(phrasekey);
+	console.log(String(seed));
+	console.log(phrasekey + String(seed));
+}
+
 /*var holdinginput = { 
 	
 	weight : {
