@@ -43,17 +43,37 @@
     <div class="central-holder">
         <main id="main-main">
             <div ng-app="app" ng-controller="EncryptorController" id="main-content-holder">
+			
+                <div id="main-content-header">
+                    <div class="type-button">
+                        <span class="fa fa-times " aria-hidden="true"></span>
+                    </div> 
+                    <div class="type-button">
+                        <span class="fa fa-times " aria-hidden="true"></span>
+                    </div> 
+                    <div class="type-button">
+                        <span class="fa fa-times " aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <hr>
+			
 				<div id="main-content-main">
-				
-					<input id="user-input-phrase" ng-model='Encryptor.userinput' 
-							ng-change='Encryptor.userPhrase(Encryptor.userinput)' type="text" class="main-input" />
 					
 					<div class="main-input-holder">
-						<input id="user-password-length" ng-model="Encryptor.value" ng-change='Encryptor.userPhrase(Encryptor.userinput)' type="range" min="1" max="63" />
-						<input type="number" class="main-input" ng-model="Encryptor.value"><br>
+						<input id="user-input-phrase" ng-model='Encryptor.userinput' ng-change='Encryptor.userPhraseGen(Encryptor.userinput)' type="text" class="main-output" />
+						<div type="number" class="type-button fa fa-key" aria-hidden="true"></div>
 					</div>
 					
-					<div id="user-password-output" type="text" class="main-output" > </div>
+					<div class="main-input-holder">
+						<input id="user-password-length" ng-model="Encryptor.value" ng-change='Encryptor.userPhraseGen(Encryptor.userinput)' type="range" min="1" max="63" />
+						<input type="number" class="main-input" ng-model="Encryptor.value" disabled />
+					</div>
+					
+					<div class="main-input-holder">					
+						<input id="user-password-output" type="text" class="main-output" onClick="this.select();" />
+						<div type="number" class="type-button glyphicon glyphicon-floppy-disk"> </div>
+					</div>
 					
 				</div>
             </div>

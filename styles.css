@@ -44,10 +44,6 @@ body {
     border-radius: 50%;
 }
 
-#main-input-holder {
-    padding: 10px;
-}
-
 .main-input {
 	font-size: 150%;
     float:left;
@@ -55,6 +51,7 @@ body {
     height: 70px;
     text-align: center;
     border: 2px solid red;
+	background-color: white;
 }
 
 .main-input-holder .main-input {
@@ -66,7 +63,7 @@ body {
 	font-size: 200%;
 }
 
-#user-input-phrase, .main-input-holder {
+.main-input-holder {
 	margin-bottom: 10px;
 }
 
@@ -79,7 +76,7 @@ body {
 .main-output {
 	font-size: 150%;
 	padding: 15px;
-    width: 100%;
+    width: 350px;
     min-height: 70px;
     text-align: center;
     border: 2px solid red;
@@ -249,10 +246,32 @@ h4 .fa {
     padding-left: 10px;
 }
 
+
+textarea {
+    width: 200px;
+    height:15px;
+    line-height:15px;
+    min-width: 200px;
+    max-width: 300px;
+    transition: width 0.25s;
+    resize:none;
+    overflow:hidden;
+}
+
+
 *,
 *::before,
 *::after {
   box-sizing: 1; // 1
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 input[type=range] {

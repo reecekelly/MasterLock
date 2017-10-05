@@ -1,4 +1,4 @@
-var seed = localStorage['userseed'] || localStorage.setItem('userseed', getRandomInt(10000, 99999));
+var seed = localStorage['userseed'] || localStorage.setItem('userseed', getRandomInt(1000000, 9999999));
 //var seed = getRandomInt(10000, 99999);
 var value  = 33;
 
@@ -17,24 +17,26 @@ app.controller('EncryptorController', function ($scope, $element) {
 		value: value,
 		finalpass: "",
 			
-		userPhrase: function(e) {
+		userPhraseGen: function(e) {
 			
-			var userphrase = e;
+			var userPhraseGen = e;
 			var phrasekey = "";
-			var res = userphrase.split("");
+			var res = userPhraseGen.split("");
 			
 			res.forEach(function(element) {
-				phrasekey += String(element.charCodeAt(0));
+				phrasekey = phrasekey + String(element.charCodeAt(0));
 			});
 			
-			masterkey = Number(String(seed) + phrasekey);
+			masterkey = "";
+
+			masterkey = Number(phrasekey + String(seed));
 			
 			var gen = new MersenneTwister(masterkey);
 			
 			var logicchain = "";
 			
 			do {
-				logicchain += String(gen.next());
+				logicchain = String(gen.next()) + logicchain;
 				
 			} while (logicchain.length < 63);	
 			
@@ -45,16 +47,15 @@ app.controller('EncryptorController', function ($scope, $element) {
 			logicchainarray.forEach(function(element, i) {
 				logicchainarray[i] = String.fromCharCode(calculateAsciiCharacter(Number(element), 33, 126));
 			});
-			
+						
 			var finalpassword = "";
+			var chainarray = logicchain.match(/.{1,1}/g);
 			
 			for(var i = 0; i<this.value; i++) {
-				var chainarray = logicchain.match(/.{1,1}/g);
-				
 				finalpassword += logicchainarray[Number(chainarray[i])];
 			}
 			
-			document.getElementById("user-password-output").innerHTML = finalpassword;
+			document.getElementById("user-password-output").value = finalpassword;
 		}
 	
 	};
@@ -72,6 +73,5 @@ function calculateAsciiCharacter(e, lower, upper) {
 		var newvalue = upper - (lower - e);
 		e = newvalue;
 	}
-	
 	return e;
 }
